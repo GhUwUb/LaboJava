@@ -1,5 +1,30 @@
-package sport;
-import Abstract
-public class Sport extends AbstractActivités{
+package Kinomichi.sport;
 
+import Kinomichi.InterfaceActivités;
+import Kinomichi.Responsable;
+
+import java.awt.*;
+import java.time.LocalDateTime;
+
+public class Sport implements InterfaceActivités {
+
+    @Override
+    public int getNbrParticipant() {
+        return 0;
+    }
+
+    @Override
+    public List[] getListParticipant() {
+        return new List[0];
+    }
+
+    @Override
+    public LocalDateTime getHoraire() {
+        return null;
+    }
+
+    @Override
+    public Responsable getResponsable() {
+        return null;
+    }
 }

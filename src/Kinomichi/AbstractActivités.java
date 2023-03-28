@@ -1,2 +1,4 @@
-package Kinomichi;public class AbstractActivités {
+package Kinomichi;
+
+public class AbstractActivités {
 }
