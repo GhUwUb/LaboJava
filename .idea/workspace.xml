@@ -4,24 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ac5f3e81-8beb-42c6-bf49-59f9e07f4429" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LaboJava.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Kinomichi/AbstractActivités.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Kinomichi/InterfaceActivités.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Kinomichi/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Kinomichi/Responsable.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Kinomichi/inscription/Inscription.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Kinomichi/inscription/Participants.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Kinomichi/logement/Logement.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Kinomichi/repas/Repas.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Kinomichi/sport/Sport.java" afterDir="false" />
-    </list>
+    <list default="true" id="ac5f3e81-8beb-42c6-bf49-59f9e07f4429" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
