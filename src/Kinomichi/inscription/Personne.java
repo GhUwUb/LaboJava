@@ -1,18 +1,17 @@
 package Kinomichi.inscription;
 
-public class Participants {
+public class Personne {
     private String nom;
     private String prénom;
     private String club;
 
-    public Participants(String nom, String prénom, String club){
+    private boolean resp;
+
+    public Personne(String nom, String prénom, String club, boolean resp){
         this.nom = nom;
         this.prénom = prénom;
         this.club = club;
-    }
-    public Participants(String nom, String prénom){
-        this.nom = nom;
-        this.prénom = prénom;
+        this.resp = resp;
     }
 
     public String getPrénom() {
@@ -37,5 +36,13 @@ public class Participants {
 
     public void setNom(String nom) {
         this.nom = nom;
+    }
+
+    public boolean isResp() {
+        return resp;
+    }
+
+    public void setResp(boolean resp) {
+        this.resp = resp;
     }
 }
