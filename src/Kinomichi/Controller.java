@@ -8,6 +8,7 @@ import Kinomichi.Factory;
 
 import java.util.ArrayList;
 import java.util.Map;
+import java.util.Scanner;
 
 public class Controller {
     Factory list;
@@ -92,7 +93,7 @@ public class Controller {
     }
 
     public void addInscription() {
-        boolean continuez;
+        boolean continuez = false;
         System.out.println("Indiquez le nom de la personne que vous voulez inscrire");
         String nom = Console.lireString();
         System.out.println("Indiquez le prénom de la personne que vous voulez inscrire");
@@ -106,7 +107,23 @@ public class Controller {
                     if (choix.equals("Oui"))
                         continuez = true;
                 }
+            if(continuez)
+                System.out.println("Dans quel activité voulez vous l'inscrire ?");
+                String activité = Console.lireString();
+
 
         }
+    }
+
+    public Personne rechercheP (String nom, String prenom) {
+        for (Personne p : listPersonne) {
+            if (p.getNom().equals(nom) && p.getPrénom().equals(prenom)) {
+                System.out.printf("Est-ce bien %s %s ? Oui/Non", p.getPrénom(), p.getNom());
+                String choix = Console.lireString();
+                if (choix.equalsIgnoreCase("Oui"))
+                    return p;
+            }
+        }
+        return null;
     }
 }
