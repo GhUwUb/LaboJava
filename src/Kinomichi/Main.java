@@ -22,18 +22,21 @@ public class Main {
                             menuBuilder.addItem("Retour", "RetourPersonne", () -> menuInscriptions.setFinish(true));
                         }
                     menuBuilder.addItem("Retour", "RetourPrincipal", () -> menuPersonnes.setFinish(true));
+                    menuBuilder.endMenu();
                 }
+            menuBuilder.endMenu();
 
             Menu menuActivités = menuBuilder.startMenu("Activités", "menuActivités");
                 {
                     menuBuilder.addItem("Ajouter", "AjouterActivités", getAjouterActivités());
                     menuBuilder.addItem("Enlever", "EnleverActivités", getEnleverActivités());
                     menuBuilder.addItem("Modifier", "ModifierActivités", getModifierActivités());
+                    menuBuilder.addItem("5", "SIUUUUUUUUU", () -> System.out.println("SIUUUUUUUUUU"));
                     menuBuilder.addItem("Retour", "RetourPrincipal", () -> menuActivités.setFinish(true));
                 }
             menuBuilder.addItem("Quitter", "QuitterPrincipal", () -> menuPrincipal.setFinish(true));
+            menuBuilder.endMenu();
         }
-
 
         menuBuilder.end();
 

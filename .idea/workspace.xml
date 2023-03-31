@@ -5,8 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ac5f3e81-8beb-42c6-bf49-59f9e07f4429" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/Kinomichi/TestPoubelle.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Kinomichi/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Kinomichi/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Kinomichi/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Kinomichi/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Kinomichi/activités/Activités.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Kinomichi/activités/Activités.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Kinomichi/inscription/MapInscription.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Kinomichi/inscription/MapInscription.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Kinomichi/inscription/Personne.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Kinomichi/inscription/Personne.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,14 +43,15 @@
     <option name="showMembers" value="true" />
     <option name="showVisibilityIcons" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/admin/Projet/ProjetLaboJava/LaboJava&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "last_opened_file_path": "C:/Users/admin/Projet/ProjetLaboJava/LaboJava",
+    "settings.editor.selected.configurable": "preferences.sourceCode.Java"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="" />
@@ -62,5 +68,29 @@
       <updated>1679667330986</updated>
     </task>
     <servers />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/Kinomichi/Controller.java</url>
+          <line>139</line>
+          <properties class="Kinomichi.Controller" method="rechercheP">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/Kinomichi/Controller.java</url>
+          <line>49</line>
+          <properties class="Kinomichi.Controller" method="removePersonne">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

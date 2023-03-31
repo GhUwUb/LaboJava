@@ -48,29 +48,29 @@ public class Controller {
     }
 
     public void removePersonne() {
-        System.out.println("Indiquez le nom de la personne que vous voulez enlever");
-        String nom = Console.lireString();
-        System.out.println("Indiquez le prénom de la personne que vous voulez enlever");
-        String prénom = Console.lireString();
-        for(Personne p : listPersonne){
-            if(p.getNom().equals(nom))
-                if(p.getPrénom().equals(prénom)) {
+        boolean continuez = false;
+
+        while (!continuez) {
+            Personne p = rechercheP();
+
+            if (p == null) {
+                System.out.println("Nous n'avons pas trouvé de personne correspondant à ce nom");
+            } else {
+                continuez = confirmerP(p);
+                if(continuez)
                     listPersonne.remove(p);
-                    break;
-                }
+            }
         }
-        System.out.println("Nous n'avons pas trouvé de personnes correspondant à ce nom et/ou à ce prénom");
     }
 
     public void modifyPersonne() {
         String temp;
-        System.out.println("Indiquez le nom de la personne que vous voulez modifier");
-        String nom = Console.lireString();
-        System.out.println("Indiquez le prénom de la personne que vous voulez modifier");
-        String prénom = Console.lireString();
-        for(Personne p : listPersonne){
-            if(p.getNom().equals(nom))
-                if(p.getPrénom().equals(prénom)) {
+        boolean continuez = false;
+
+        while (!continuez) {
+            Personne p = rechercheP();
+            if (p != null) {
+                if(confirmerP(p)) {
                     System.out.println("Indiquez le nouveau nom");
                     temp = Console.lireString();
                     p.setNom(temp);
@@ -82,48 +82,100 @@ public class Controller {
                     p.setClub(temp);
                     System.out.println("Est-il responsable ? Oui/Non");
                     temp = Console.lireString();
-                    if(temp.equals("Oui"))
+                    if (temp.equals("Oui"))
                         p.setResp(true);
                     else
                         p.setResp(false);
-                    break;
+                }else{
+                    continuez = wantToContinue();
                 }
+            } else
+                System.out.println("Nous n'avons pas trouvé de personnes correspondant à ce nom et/ou à ce prénom");
+                continuez = wantToContinue();
         }
-        System.out.println("Nous n'avons pas trouvé de personnes correspondant à ce nom et/ou à ce prénom");
     }
 
     public void addInscription() {
-        boolean continuez = false;
-        System.out.println("Indiquez le nom de la personne que vous voulez inscrire");
-        String nom = Console.lireString();
-        System.out.println("Indiquez le prénom de la personne que vous voulez inscrire");
-        String prénom = Console.lireString();
+        boolean continuez = true;
+        Personne p;
+        while (!continuez){
+            p = rechercheP();
 
-        for (Personne p : listPersonne) {
-            if (p.getNom().equals(nom))
-                if (p.getPrénom().equals(prénom)) {
-                    System.out.printf("Est-ce bien %s %s ? Oui/Non", p.getPrénom(), p.getNom());
-                    String choix = Console.lireString();
-                    if (choix.equals("Oui"))
-                        continuez = true;
+            if (p != null) {
+                continuez = confirmerP(p);
+
+                if(continuez = false)
+                    continuez = wantToContinue();
+                else {
+                    afficheA(p);
                 }
-            if(continuez)
-                System.out.println("Dans quel activité voulez vous l'inscrire ?");
-                String activité = Console.lireString();
-
-
+            }else{
+                System.out.println("La personne n'existe pas");
+                continuez = wantToContinue();
+            }
         }
     }
 
-    public Personne rechercheP (String nom, String prenom) {
+
+
+    public void removeInscription() {
+
+    }
+
+    private boolean wantToContinue() {
+        System.out.println("Voulez vous réessayer ?");
+        System.out.println("Oui | Non");
+        while(true) {
+            String choix = Console.lireString();
+
+            if (choix.equalsIgnoreCase("Oui"))
+                return true;
+            else if(choix.equalsIgnoreCase("Non"))
+                return false;
+            else
+                System.out.println("Vous devez répondre Oui ou Non");
+        }
+    }
+
+    public Personne rechercheP () {
+        System.out.println("Indiquez le nom de la personne que vous voulez enlever");
+        String nom = Console.lireString();
+        System.out.println("Indiquez le prénom de la personne que vous voulez enlever");
+        String prenom = Console.lireString();
+
         for (Personne p : listPersonne) {
             if (p.getNom().equals(nom) && p.getPrénom().equals(prenom)) {
-                System.out.printf("Est-ce bien %s %s ? Oui/Non", p.getPrénom(), p.getNom());
-                String choix = Console.lireString();
-                if (choix.equalsIgnoreCase("Oui"))
                     return p;
             }
         }
         return null;
     }
+
+    public boolean confirmerP (Personne p) {
+            System.out.printf("Est-ce bien %s %s ? Oui/Non", p.getPrénom(), p.getNom());
+            String choix = Console.lireString();
+            if (choix.equals("Oui"))
+                return true;
+
+            return false;
+    }
+
+    public Activités rechercheA(Personne p){
+        System.out.println("Dans quel activité voulez vous l'inscrire ?");
+        String activité = Console.lireString();
+        for(Activités a : p.getList()){
+            if(activité.equalsIgnoreCase(a.getNom())){
+                return a;
+            }
+        }
+        return null;
+    }
+    private void afficheA(Personne p) {
+        int cpt =0;
+        for(Activités a : p.getList()){
+            cpt++;
+            System.out.printf("%i: %s Début : %s Fin : %s Durée : %s",cpt, a.getNom(), a.getDébut().toString(), a.getFin().toString(), a.getStringDurée() );
+        }
+    }
+
 }

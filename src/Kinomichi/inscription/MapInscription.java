@@ -7,12 +7,11 @@ import java.util.*;
 public class MapInscription {
     private LinkedHashMap map;
     public MapInscription(){
-        this.map = new LinkedHashMap<Personne, String>();
+        this.map = new LinkedHashMap<Personne, List<Activités>>();
     }
 
-    public void addParticipants(Personne p, Activités a){
-        a.getNom();
-        map.put(p,a);
+    public void addParticipants(Personne p, List<Activités> ListA){
+        map.put(p,p.getList());
     }
     public void removeParticipants(Personne p){
         map.remove(p);
