@@ -14,16 +14,17 @@ public class Main {
                     menuBuilder.addItem("Ajouter", "AjouterPersonne", getAjouterPersonne());
                     menuBuilder.addItem("Enlever", "EnleverPersonne", getEnleverPersonne());
                     menuBuilder.addItem("Modifier", "ModifierPersonne", getModifierPersonne());
-                    Menu menuInscriptions = menuBuilder.startMenu("Inscription","menuInscriptions");
-                        {
-                            menuBuilder.addItem("Ajouter", "AjouterInscription", getAjouterInscription());
-                            menuBuilder.addItem("Enlever", "EnleverInscription", getEnleverInscription());
-                            menuBuilder.addItem("Modifier", "ModifierInscription", getModifierInscription());
-                            menuBuilder.addItem("Retour", "RetourPersonne", () -> menuInscriptions.setFinish(true));
-                        }
                     menuBuilder.addItem("Retour", "RetourPrincipal", () -> menuPersonnes.setFinish(true));
-                    menuBuilder.endMenu();
                 }
+            menuBuilder.endMenu();
+
+            Menu menuInscriptions = menuBuilder.startMenu("Inscription","menuInscriptions");
+            {
+                menuBuilder.addItem("Ajouter", "AjouterInscription", getAjouterInscription());
+                menuBuilder.addItem("Enlever", "EnleverInscription", getEnleverInscription());
+                menuBuilder.addItem("Modifier", "ModifierInscription", getModifierInscription());
+                menuBuilder.addItem("Retour", "RetourPersonne", () -> menuInscriptions.setFinish(true));
+            }
             menuBuilder.endMenu();
 
             Menu menuActivités = menuBuilder.startMenu("Activités", "menuActivités");
@@ -31,13 +32,12 @@ public class Main {
                     menuBuilder.addItem("Ajouter", "AjouterActivités", getAjouterActivités());
                     menuBuilder.addItem("Enlever", "EnleverActivités", getEnleverActivités());
                     menuBuilder.addItem("Modifier", "ModifierActivités", getModifierActivités());
-                    menuBuilder.addItem("5", "SIUUUUUUUUU", () -> System.out.println("SIUUUUUUUUUU"));
                     menuBuilder.addItem("Retour", "RetourPrincipal", () -> menuActivités.setFinish(true));
                 }
-            menuBuilder.addItem("Quitter", "QuitterPrincipal", () -> menuPrincipal.setFinish(true));
             menuBuilder.endMenu();
-        }
+            menuBuilder.addItem("Quitter", "QuitterPrincipal", () -> menuPrincipal.setFinish(true));
 
+        }
         menuBuilder.end();
 
         while(!menuPrincipal.isFinish())
@@ -46,15 +46,15 @@ public class Main {
     }
 
     private static Runnable getModifierActivités() {
-        return ()-> controller.modifyActivités();
+        return ()-> controller.addInscription();
     }
 
     private static Runnable getEnleverActivités() {
-        return ()-> controller.removeActivité();
+        return ()-> controller.addInscription();
     }
 
     private static Runnable getAjouterActivités() {
-        return ()-> controller.addActivité();
+        return ()-> controller.addInscription();
     }
 
     private static Runnable getModifierInscription() {

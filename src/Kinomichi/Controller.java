@@ -11,7 +11,7 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class Controller {
-    Factory list;
+    Factory list = new Factory();
     ArrayList<Personne> listPersonne;
     Map<Personne, Activités> mapInscription;
     ArrayList<Activités> listActivités;
@@ -89,16 +89,17 @@ public class Controller {
                 }else{
                     continuez = wantToContinue();
                 }
-            } else
+            } else {
                 System.out.println("Nous n'avons pas trouvé de personnes correspondant à ce nom et/ou à ce prénom");
                 continuez = wantToContinue();
+            }
         }
     }
 
     public void addInscription() {
         boolean continuez = true;
         Personne p;
-        while (!continuez){
+        while (continuez){
             p = rechercheP();
 
             if (p != null) {
@@ -107,7 +108,7 @@ public class Controller {
                 if(continuez = false)
                     continuez = wantToContinue();
                 else {
-                    afficheA(p);
+                    afficheA();
                 }
             }else{
                 System.out.println("La personne n'existe pas");
@@ -120,6 +121,8 @@ public class Controller {
 
     public void removeInscription() {
 
+    }
+    public void modifyInscription() {
     }
 
     private boolean wantToContinue() {
@@ -170,12 +173,13 @@ public class Controller {
         }
         return null;
     }
-    private void afficheA(Personne p) {
+    private void afficheA() {
         int cpt =0;
-        for(Activités a : p.getList()){
+        for(Activités a : listActivités){
             cpt++;
-            System.out.printf("%i: %s Début : %s Fin : %s Durée : %s",cpt, a.getNom(), a.getDébut().toString(), a.getFin().toString(), a.getStringDurée() );
+            System.out.printf("%d: %s Début : %s Fin : %s Durée : %s",cpt, a.getNom(), a.getDébut().toString(), a.getFin().toString(), a.getStringDurée() );
         }
     }
+
 
 }
