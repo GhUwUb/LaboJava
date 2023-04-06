@@ -46,15 +46,15 @@ public class Main {
     }
 
     private static Runnable getModifierActivités() {
-        return ()-> controller.addInscription();
+        return ()-> controller.modifyActivité();
     }
 
     private static Runnable getEnleverActivités() {
-        return ()-> controller.addInscription();
+        return ()-> controller.removeActivité();
     }
 
     private static Runnable getAjouterActivités() {
-        return ()-> controller.addInscription();
+        return ()-> controller.addActivité();
     }
 
     private static Runnable getModifierInscription() {

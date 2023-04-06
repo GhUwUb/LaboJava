@@ -8,7 +8,6 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Kinomichi/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Kinomichi/Controller.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Kinomichi/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Kinomichi/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Kinomichi/Menu/MenuVueImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Kinomichi/Menu/MenuVueImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,21 +70,12 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/Kinomichi/Controller.java</url>
-          <line>142</line>
-          <properties class="Kinomichi.Controller">
+          <line>227</line>
+          <properties class="Kinomichi.Controller" method="rechercheP">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
           </properties>
           <option name="timeStamp" value="1" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/Kinomichi/Controller.java</url>
-          <line>49</line>
-          <properties class="Kinomichi.Controller" method="removePersonne">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="2" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/Kinomichi/Main.java</url>
@@ -95,6 +85,11 @@
             <option name="WATCH_EXIT" value="false" />
           </properties>
           <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/Kinomichi/Controller.java</url>
+          <line>242</line>
+          <option name="timeStamp" value="5" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
