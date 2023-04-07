@@ -14,11 +14,18 @@ public class MenuVueImpl implements MenuVue{
         Map<String, String> testMap = menu.getItemText();
         Iterator iteratorKey = testMap.keySet().iterator();
 
+
+        System.out.println("---------------------------");
         System.out.println("Quelle option voulez vous ?");
+        System.out.println("---------------------------");
         while (iteratorKey.hasNext()){
-            Index++;
             Object next = iteratorKey.next();
-            System.out.printf("%d. %s \n", Index, next);
+            System.out.printf("    | %s ", next);
+            int length = next.toString().length();
+            for(int i = 0; i<11-length; i++){
+                System.out.print(" ");
+            }
+            System.out.println("|");
 
         }
         String choix = scan.nextLine();

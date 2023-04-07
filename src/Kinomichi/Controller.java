@@ -4,19 +4,19 @@ import Kinomichi.activités.Activités;
 import Kinomichi.inscription.Personne;
 import Kinomichi.util.Console;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Map;
+import java.util.*;
 
-public class Controller {
-    Factory list = new Factory();
+public class Controller implements Serializable {
+    public Factory list = new Factory();
     ArrayList<Personne> listPersonne;
-    Map<Personne, Activités> mapInscription;
+    Map<Activités, List<Personne>> mapInscription;
     ArrayList<Activités> listActivités;
     public Controller(){
-        this.listPersonne = list.getListPersonne();
-        this.mapInscription = list.getMapInscription();
-        this.listActivités = list.getListActivités();
+        this.listPersonne = list.getList().getListP().getListPersonne();
+        this.mapInscription = list.getList().getMap().getMap();
+        this.listActivités = list.getList().getListA().getListActivités();
     }
 
     public void addPersonne(){
@@ -26,10 +26,10 @@ public class Controller {
 
         System.out.println("Nom :");
         String nom = Console.lireString();
-        
+
         System.out.println("Prénom :");
         String prenom = Console.lireString();
-        
+
         System.out.println("Responsable ? Oui/Non");
         String choixResp = Console.lireString();
         if(choixResp.equals("Oui"))
@@ -44,8 +44,8 @@ public class Controller {
         Personne p = new Personne(nom, prenom, club, resp);
         listPersonne.add(p);
     }
-
     public void removePersonne() {
+        Iterator iterator= mapInscription.keySet().iterator();
 
         System.out.println("Sélectionnez la personne à modifier");
         int cpt = 0;
@@ -55,17 +55,20 @@ public class Controller {
             System.out.printf("%d %s %s %s", cpt, p.getNom(), p.getPrénom(), p.getClub());
         }
         int choix = Console.lireInt() - 1;
-        if(choix != 0)
+        if(choix != -1) {
+            while(iterator.hasNext()){
+                mapInscription.get(iterator.next()).remove(listPersonne.get(choix));
+            }
             listPersonne.remove(choix);
+
+        }
     }
     public void modifyPersonne() {
 
         System.out.println("Sélectionnez la personne à modifier");
-        int cpt = 0;
         System.out.println("0. Annulez");
         for(Personne p : listPersonne){
-            cpt++;
-            System.out.printf("%d %s %s %s", cpt, p.getNom(), p.getPrénom(), p.getClub());
+            System.out.printf("%d %s %s %s", listPersonne.indexOf(p), p.getNom(), p.getPrénom(), p.getClub());
         }
         int choix = Console.lireInt()-1;
         Personne p = listPersonne.get(choix);
@@ -94,27 +97,28 @@ public class Controller {
         }
     }
     public void addActivité() {
-        System.out.println("Indiquez le nom");
+        System.out.println("Nom :");
         String nom = Console.lireString();
-        System.out.println("Indiquez la date de début");
+        System.out.println("Date début");
         LocalDateTime début = getDate();
-        System.out.println("Indiquez la date de fin");
+        System.out.println("Date fin");
         LocalDateTime fin = getDate();
         Activités a = new Activités(nom, début, fin);
         listActivités.add(a);
     }
     public void removeActivité() {
+        Activités aFinal;
         System.out.println("Sélectionnez l'activité à enlever");
-        int cpt = 0;
         System.out.println("0. Annulez");
         for(Activités a : listActivités) {
-            cpt++;
-            System.out.printf("%d %s %s %s \n", cpt, a.getNom(), a.getDébut().toString(), a.getFin().toString());
+            System.out.printf("%d %s %s %s \n", listActivités.indexOf(a), a.getNom(), a.getDébut().toString(), a.getFin().toString());
         }
         int choix = Console.lireInt()-1;
 
-        if(choix != 0)
+        if(choix != -1) {
+            mapInscription.remove(listActivités.get(choix));
             listActivités.remove(choix);
+        }
     }
     public void modifyActivité() {
         System.out.println("Sélectionnez l'activité à modifier");
@@ -148,30 +152,96 @@ public class Controller {
             }
         }
     }
-
+    public void afficherActivité(){
+        System.out.println("Voici la liste des activités");
+        for(Activités a : listActivités){
+            System.out.printf("%d %s %s %s", listActivités.indexOf(a), a.getNom(), a.getDébut().toString(), a.getFin().toString());
+        }
+    }
     public void addInscription() {
+        Personne pFinal;
+        Activités aFinal;
         System.out.println("Sélectionnez la personne à inscrire");
         int cpt = 0;
         System.out.println("0. Annulez");
         for (Personne p : listPersonne) {
             cpt++;
-            System.out.printf("%d %s %s %s", cpt, p.getNom(), p.getPrénom(), p.getClub());
+            System.out.printf("%d. %s %s %s\n", cpt, p.getNom(), p.getPrénom(), p.getClub());
         }
         int choix = Console.lireInt() - 1;
-        if(choix != 0)
-            Personne p = listPersonne.get(choix);
+        if(choix != -1) {
+            pFinal = listPersonne.get(choix);
+            System.out.printf("Vous avez sélectionné %s %s\n", pFinal.getPrénom(), pFinal.getNom());
+        }
+        else
+            return;
+
+        System.out.println("Sélectionnez l'activité dans laquel vous voulez l'inscrire");
+        cpt = 0;
+        System.out.println("0. Annulez");
+        for(Activités a : listActivités) {
+            cpt++;
+            System.out.printf("%d. %s %s %s \n", cpt, a.getNom(), a.getDébut().toString(), a.getFin().toString());
+        }
+        choix = Console.lireInt() - 1;
+        if(choix != -1) {
+            aFinal = listActivités.get(choix);
+            System.out.printf("Vous avez sélectionné %s\n", aFinal.getNom());
+        }
+        else
+            return;
+
+        if(mapInscription.isEmpty() || !mapInscription.keySet().contains(aFinal)){
+            mapInscription.put(aFinal, aFinal.getList());
+            mapInscription.get(aFinal).add(pFinal);
+        }else
+            mapInscription.get(aFinal).add(pFinal);
 
     }
-
-
-
-
     public void removeInscription() {
-
+        Iterator iterator = mapInscription.keySet().iterator();
+        ArrayList<Integer> listIndex = new ArrayList<Integer>();
+        System.out.println("Sélectionnez la personne à désinscrire");
+        System.out.println("0. Annulez");
+        for (Personne p : listPersonne) {
+            System.out.printf("%d %s %s %s", listPersonne.indexOf(p), p.getNom(), p.getPrénom(), p.getClub());
+        }
+        int choixP = Console.lireInt() - 1;
+        if(choixP != 0) {
+            int cpt =0;
+            System.out.println("Sélectionnez l'activité dans laquelle vous voulez désinscrire la personne");
+            System.out.println("0. Annulez");
+            while(iterator.hasNext()){
+                cpt++;
+                Activités next = (Activités)iterator.next();
+                if(mapInscription.get(next).contains(listPersonne.get(choixP))){
+                    listIndex.add(cpt);
+                    System.out.printf("%d %s %s %s", listIndex.indexOf(cpt), next.getNom(), next.getDébut().toString(), next.getFin().toString());
+                }
+                int choixA = Console.lireInt()-1;
+                if(choixA !=0){
+                    mapInscription.get(listActivités.get(listIndex.get(choixA))).remove(choixP);
+                }else
+                    return;
+            }
+        }
     }
-    public void modifyInscription() {
+    public void afficherInscription() {
+        Activités aFinal;
+        System.out.println("Sélectionnez l'activité à afficher");
+        int cpt = 0;
+        System.out.println("0. Annulez");
+        for(Activités a : listActivités) {
+            cpt++;
+            System.out.printf("%d %s %s %s \n", cpt, a.getNom(), a.getDébut().toString(), a.getFin().toString());
+        }
+        int choix = Console.lireInt()-1;
+        aFinal = listActivités.get(choix);
+        System.out.printf("Voici la liste des pariticipants de %s", aFinal.getNom());
+        for(Personne p : aFinal.getList()){
+            System.out.printf("%d %s %s %s", listPersonne.indexOf(p), p.getNom(), p.getPrénom(), p.getClub());
+        }
     }
-
 
     private static LocalDateTime getDate() {
         // variables
@@ -195,80 +265,6 @@ public class Controller {
         // retourne la date
         return date;
     }
-
-    private boolean wantToContinue() {
-        System.out.println("Oui | Non");
-        while(true) {
-            String choix = Console.lireString();
-
-            if (choix.equalsIgnoreCase("Oui"))
-                return true;
-            else if(choix.equalsIgnoreCase("Non"))
-                return false;
-            else
-                System.out.println("Vous devez répondre Oui ou Non");
-        }
-    }
-
-    private boolean wantToInscrire() {
-        System.out.println("Voulez vous ajouter cette personne au programme ?");
-        System.out.println("Oui | Non");
-        while(true) {
-            String choix = Console.lireString();
-
-            if (choix.equalsIgnoreCase("Oui"))
-                return true;
-            else if(choix.equalsIgnoreCase("Non"))
-                return false;
-            else
-                System.out.println("Vous devez répondre Oui ou Non");
-        }
-    }
-
-    public Personne rechercheP () {
-        System.out.println("Indiquez le nom de la personne");
-        String nom = Console.lireString();
-        System.out.println("Indiquez le prénom de la personne");
-        String prenom = Console.lireString();
-
-        for (Personne p : listPersonne) {
-            if (p.getNom().equals(nom) && p.getPrénom().equals(prenom)) {
-                    return p;
-            }
-        }
-        return null;
-    }
-
-    public boolean confirmerP (Personne p) {
-            System.out.printf("Est-ce bien %s %s ? Oui/Non", p.getPrénom(), p.getNom());
-            String choix = Console.lireString();
-            if (choix.equals("Oui"))
-                return true;
-
-            return false;
-    }
-
-    public Activités rechercheA(){
-        System.out.println("Dans quel activité voulez vous l'inscrire ?");
-        String activité = Console.lireString();
-        for(Activités a : listActivités){
-            if(activité.equalsIgnoreCase(a.getNom())){
-                return a;
-            }
-        }
-        System.out.println("Nous n'avons pas trouvé l'activité");
-        return null;
-    }
-    private void addA() {
-    }
-    private void afficheListA() {
-        int cpt =0;
-        for(Activités a : listActivités){
-            cpt++;
-            System.out.printf("%d: %s Début : %s Fin : %s Durée : %s",cpt, a.getNom(), a.getDébut().toString(), a.getFin().toString(), a.getStringDurée() );
-        }
-    }
-
 
 
 }

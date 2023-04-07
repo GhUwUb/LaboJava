@@ -2,14 +2,13 @@ package Kinomichi.inscription;
 
 import Kinomichi.activités.Activités;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Personne {
+public class Personne implements Serializable {
     private String nom;
     private String prénom;
     private String club;
-
-    private List<Activités> list;
     private boolean resp;
 
     public Personne(String nom, String prénom, String club, boolean resp){
@@ -51,10 +50,4 @@ public class Personne {
         this.resp = resp;
     }
 
-    public List<Activités> getList() {
-        return list;
-    }
-    public void setList(List<Activités> a){
-        this.list = a;
-    }
 }

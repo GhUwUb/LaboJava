@@ -1,9 +1,10 @@
 package Kinomichi.inscription;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ListPersonne {
+public class ListPersonne implements Serializable {
     private ArrayList<Personne> listPersonne = new ArrayList<>();
 
     public void addListPersonne(Personne p){

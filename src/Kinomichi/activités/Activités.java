@@ -1,22 +1,18 @@
 package Kinomichi.activités;
 
-import Kinomichi.inscription.MapInscription;
 import Kinomichi.inscription.Personne;
 
+import java.io.Serializable;
 import java.time.Duration;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.time.temporal.ChronoUnit;
-import java.time.temporal.TemporalField;
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.Set;
+import java.util.List;
 
-public class Activités {
+public class Activités implements Serializable {
     String nom;
     LocalDateTime début;
     LocalDateTime fin;
     Duration durée;
+    List<Personne> list;
 
     public Activités(String nom, LocalDateTime début, LocalDateTime fin){
         this.nom = nom;
@@ -24,8 +20,6 @@ public class Activités {
         this.durée = Duration.between(début, fin);
         this.fin = fin;
     }
-
-
     public void setNom(String nom) {
         this.nom = nom;
     }
@@ -46,18 +40,11 @@ public class Activités {
         this.fin = fin;
     }
 
-    public String getStringDurée() {
-        String hours = Integer.toString(durée.toHoursPart());
-        String minutes = Integer.toString(durée.toMinutesPart());
-        String stringDurée = hours +"H "+ minutes;
-        return stringDurée;
-    }
-
-    public void setDurée(Duration durée) {
-        this.durée = durée;
-    }
-
     public String getNom(){
         return nom;
+    }
+
+    public List<Personne> getList() {
+        return list;
     }
 }

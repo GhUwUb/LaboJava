@@ -2,16 +2,17 @@ package Kinomichi.inscription;
 
 import Kinomichi.activités.Activités;
 
+import java.io.Serializable;
 import java.util.*;
 
-public class MapInscription {
+public class MapInscription implements Serializable {
     private LinkedHashMap map;
     public MapInscription(){
-        this.map = new LinkedHashMap<Personne, List<Activités>>();
+        this.map = new LinkedHashMap<Activités, List<Personne>>();
     }
 
-    public void addParticipants(Personne p, List<Activités> ListA){
-        map.put(p,p.getList());
+    public void addParticipants(Activités a){
+        map.put(a,a.getList());
     }
     public void removeParticipants(Personne p){
         map.remove(p);
